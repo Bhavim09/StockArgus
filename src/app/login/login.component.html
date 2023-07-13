@@ -1,0 +1,73 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+
+    <p></p>
+    <p></p>
+    <div class="container py-4">
+      <div id="alertnq">
+      </div>
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Login</h2>
+            <form [formGroup]="myForm" (ngSubmit)="tostock(myForm)" class="login-form ">
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">Email address</label>
+                <input type="email" id="form2Example1" class="form-control" formControlName="email"/>
+                <div *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
+                  <small class="text-danger">Enter a valid email</small>
+                </div>
+              </div>
+  
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example2">Password</label>
+                <input type="password" id="form2Example2" class="form-control" formControlName="password"/>
+              </div>
+  
+              <!-- 2 column grid layout for inline styling -->
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4"[disabled]=myForm.invalid >Sign in</button>
+              <div class="row mb-4">
+                <div class="col">
+                  <!-- Simple link -->
+                  <a href="/signup">New User</a>
+                </div>
+              </div>
+
+              <div class="row mb-4">
+                <div class="col">
+                  <!-- Simple link -->
+                  <a (click)="resetpassword(myForm)">Forget Password</a>
+                </div>
+              </div> 
+            </form>
+  
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="https://source.unsplash.com\uJhgEXPqSPk" class="w-100 rounded-4 shadow-4"
+          alt="" />
+      </div>
+    </div>
+  </div>
+  </section>
+ 

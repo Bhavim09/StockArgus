@@ -1,0 +1,73 @@
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+    <style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+    </style>
+  
+    <!-- Jumbotron -->
+    <div class="container py-4">
+      <div id="alertnq">
+      </div>
+      <div class="row g-0 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card cascading-right" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body p-5 shadow-5 text-center">
+              <h2 class="fw-bold mb-5">Sign up now</h2>
+              <form [formGroup]="myForm" (ngSubmit)="tologin(myForm)" class="signup-form">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+              
+              
+              
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3">Email address</label>
+                  <input type="email" id="form3Example3" class="form-control" formControlName="email"/>
+                <div *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
+                  <small class="text-danger">Enter a valid email</small>
+                </div>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form4Example4">Password</label>
+                  <input type="password" id="form4Example4" class="form-control" formControlName="password"/>
+                  <div *ngIf="myForm.get('password')?.invalid && (myForm.get('password')?.dirty || myForm.get('password')?.touched)">
+                    <small class="text-danger">password should contain atleast one number, one special character and length should between 6-16</small>
+                  </div>
+                </div>
+
+                <!-- Confirm Password input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form5Example5"> Re-Enter Password</label>
+                  <input type="password" id="form5Example5" class="form-control" formControlName="Repassword"/>
+                </div>
+  
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="myForm.invalid">
+                  Sign up
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <img src="https://source.unsplash.com\uJhgEXPqSPk" class="w-100 rounded-4 shadow-4"
+            alt="" />
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
