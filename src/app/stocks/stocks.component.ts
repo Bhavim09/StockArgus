@@ -96,7 +96,7 @@ export class StocksComponent implements OnInit {
           .adduser(this.email, Form.value.stock, Form.value.qty, pricef)
           .subscribe((value1: any) => {
             console.log(value1);
-            if (value1['inres'] == 'successfully updated') {
+            if (value1['inres'] == 'successfully updaed') {
               this.toastr.success('Stock purchase successful!');
               if (this.click == 1) {
                 document.getElementById('forclickremove1')?.remove();
