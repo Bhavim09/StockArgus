@@ -36,7 +36,6 @@ export class StocksComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
-    console.log('Hello from stock department');
   }
 
   ngOnInit(): void {
