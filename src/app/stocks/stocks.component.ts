@@ -91,12 +91,11 @@ export class StocksComponent implements OnInit {
       this.val$ = value;
       pricef =
         Form.value.qty * parseInt(this.val$['Global Quote']['05. price']) * 79;
-      const get1 = new Promise<any>((resolve, _reject) => {
         this.backservice
           .adduser(this.email, Form.value.stock, Form.value.qty, pricef)
           .subscribe((value1: any) => {
             console.log(value1);
-            if (value1['inres'] == 'successfully updaed') {
+            if (value1['inres'] == 'successfully updated') {
               this.toastr.success('Stock purchase successful!');
               if (this.click == 1) {
                 document.getElementById('forclickremove1')?.remove();
@@ -110,7 +109,6 @@ export class StocksComponent implements OnInit {
               Form.reset();
             }
           });
-      });
     });
   }
 
