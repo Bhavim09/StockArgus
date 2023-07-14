@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BackService } from '../back.service';
 import { ToastrService } from 'ngx-toastr';
 import ls from 'localstorage-slim';
+import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-stocks',
@@ -11,13 +12,14 @@ import ls from 'localstorage-slim';
   styleUrls: ['./stocks.component.css'],
 })
 export class StocksComponent implements OnInit {
-  val$: any;
+  val$: any;  
   stock = '';
   myForm!: FormGroup;
   email: any;
   click = 0;
   price = 0;
   pl: any;
+  condition=false;
   stocknames = [
     { name: 'Google', sname: 'goog' },
     { name: 'IBM', sname: 'IBM' },
@@ -31,6 +33,7 @@ export class StocksComponent implements OnInit {
     { name: 'MasterCard Inc.', sname: 'ma' },
     { name: 'Tesla, Inc.', sname: 'tsla' },
   ];
+  stockData:any;
   constructor(
     private backservice: BackService,
     private router: Router,
@@ -53,6 +56,17 @@ export class StocksComponent implements OnInit {
     });
   }
 
+  getChangeClass(changePercent: string) {
+    const value = parseFloat(changePercent);
+
+    if (value > 0) {
+      return 'positive';
+    } else if (value < 0) {
+      return 'negative';
+    }
+
+    return '';
+  }
   // ************************ SHOW PRICE FUNCTION ***********************************
 
   show_price(Form: FormGroup) {
@@ -74,10 +88,13 @@ export class StocksComponent implements OnInit {
     // })
 
     // New Logic
-
     this.backservice.getprice(Form.value.stock).subscribe((values: any) => {
       this.val$ = values;
+      // console.log(values["Global Quote"]);
+      this.stockData = values["Global Quote"];
+      console.log(this.stockData);
       this.price = parseInt(this.val$['Global Quote']['05. price']) * 79;
+      this.condition=true;
     });
   }
 
