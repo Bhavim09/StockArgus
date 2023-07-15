@@ -1,0 +1,107 @@
+#cover {
+    background: #222 url("https://source.unsplash.com/mkoxQ99o-_Y") center center no-repeat;
+    background-size: cover;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    /* align-items: center; */
+    position: relative;
+}
+
+#cover-caption {
+    width: 100%;
+    position: relative;
+    z-index: 4;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(84, 80, 80, 0.3);
+    z-index: -1;
+    border-radius: 10px;
+}
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .ticker-strip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+  }
+
+  .ticker-strip .ticker {
+    display: inline-block;
+    white-space: nowrap;
+    animation: tickerAnimation linear infinite;
+    animation-duration: 25s;
+  }
+
+  .ticker-strip .ticker span {
+    padding: 0 20px;
+  }
+
+  @keyframes tickerAnimation {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+    
+  }
+  
+  
+  #heading h1 {
+    font-size: 32px;
+    color: #fff;
+    margin: 0;
+    text-align:start;
+    margin-bottom: 20px;
+  }
+  .table-bordered {
+    border: 1px solid white;
+  }
+  .table-bordered th,
+.table-bordered td {
+  border: 1px solid white;
+} 
+.content {
+  min-height: calc(100vh - 60px); /* Subtract the footer height */
+}
+
+.footer {
+  background-color: #1b1c1e;
+  padding: 20px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.pl-text {
+  font-size: 20px;
+  color: white;
+}
+
+.pl-valuered {
+  font-size: 20px;
+  color: red;
+  font-weight:bold ;
+} 
+.pl-valuegreen {
+  font-size: 20px;
+  color: green;
+  font-weight: bold;
+}

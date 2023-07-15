@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { StatusComponent } from './status/status.component';
 
 const routes: Routes = [
 {
@@ -34,6 +35,10 @@ const routes: Routes = [
   path:'blog',
   component:BlogsComponent
 },
+{
+  path:'status',
+  component:StatusComponent
+}
 ];
 
 @NgModule({

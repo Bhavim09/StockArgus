@@ -12,6 +12,7 @@ import { LandingComponent } from './landing/landing.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StatusComponent } from './status/status.component';
 
 
 
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     LandingComponent,
     BlogsComponent,
+    StatusComponent,
   ],
   imports: [
     HttpClientModule,

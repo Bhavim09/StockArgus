@@ -1,5 +1,5 @@
 #cover {
-    background: #222 url("https://source.unsplash.com/vrSKrUEZsDY") center center no-repeat;
+    background: #222 url("https://source.unsplash.com/mkoxQ99o-_Y") center center no-repeat;
     background-size: cover;
     height: 100%;
     text-align: center;
@@ -19,7 +19,7 @@ form:before {
     content: '';
     height: 100%;
     left: 0;
-    position: absolute;
+    position:absolute;
     top: 0;
     width: 100%;
     background-color: rgba(84, 80, 80, 0.3);
@@ -61,4 +61,87 @@ body {
     100% {
       transform: translateX(-100%);
     }
+    
+  }
+  .container {
+    max-width: 100vw;
+    margin: 5px;
+    padding:0px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: rgb(44, 42, 42); /* Add white background */
+  }
+  
+  table th,
+  table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ede3e3;
+  }
+  
+  table th {
+    background-color: #282626;
+  }
+  
+  .positive {
+    color: green;
+  }
+  
+  .negative {
+    color: red;
+  }
+  
+  #cover-caption {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .fixed-bottom {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .custom-button-padding {
+    padding: 5px 10px; /* Adjust the values as needed */
+    width: 100px;
+  }
+  .column-content {
+    width: 100%; /* Set the fixed width for the column content */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+
+
+  .ticker-strip1 {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .ticker1 {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  .card {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
   }

@@ -1,103 +1,171 @@
-<section id="cover" class="min-vh-100">
-  <div id="cover-caption">
-    <div class="container ">
-      <div class="ticker-strip">
-        <div class="ticker">
-          <span>AAPL: 14800.50</span>
-          <span>GOOGL: 2745.80</span>
-          <span>MSFT: 2934.20</span>
-          <span>SBIN: 590.20</span>
-          <span>JnJ: 3490.20</span>
-          <span>NVD: 5290.20</span>
-          <span>VISA: 5290.20</span>
-          <span>MCARD: 720.20</span>
-          <span>TESLA:2780.20</span>
+<section id="cover" class="min-vh-100 min-vw-100">
+  <div class="ticker-strip">
+    <div class="ticker">
+      <span>AAPL: 14800.50</span>
+      <span>GOOGL: 2745.80</span>
+      <span>MSFT: 2934.20</span>
+      <span>SBIN: 590.20</span>
+      <span>JnJ: 3490.20</span>
+      <span>NVD: 5290.20</span>
+      <span>VISA: 5290.20</span>
+      <span>MCARD: 720.20</span>
+      <span>TESLA:2780.20</span>
 
-          <!-- Add more stock prices here -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="row text-white">
-            
-            <div class=" form p-4">
-              <h1 class="display-4 py-2 text-truncate">ADD BUYING
-              </h1>
-              <h4 class="display-8 py-1 text-truncate">AND
-              </h4>
-              <h1 class="display-7 py-1 text-truncate">CHECK STATUS
-              </h1>
-              <div class="px-2">
-                <form class="justify-content-center" [formGroup]="myForm" (ngSubmit)="add_userdetail(myForm)">
-                  <div class="form-group --stockname">
-                    <label>Stock Name</label>
-                    <select type="text" class="form-control custom-select col-sm-2" formControlName="stock" name="stock" required>
-                      <option *ngFor="let stockname of stocknames" value="{{stockname.sname}}">{{stockname.name}}</option>
-                    </select>
-          
-                  </div>
-                  <p></p>
-                  <div class="form-group --quantity">
-
-                    <label for="floatingSelect">Quantity</label>
-                    <input type="number" class="form-control col-sm-2" name="qty"
-                      formControlName="qty" min="1">
-    
-                  </div>
-
-                  <div class="cl-btn">
-                    <button type="submit" class="btn btn-success btn-lg mt-3 mx-3"
-                      [disabled]="myForm.invalid">BUY</button>
-                    <button type="button" (click)="sellstock(myForm)" [disabled]="myForm.invalid" id="btnsubmit"
-                      class="btn btn-danger btn-lg mt-3 ml-3 mx-3 --sell" data-bs-toggle="collapse"
-                      data-bs-target="#collapseWidthExample" aria-expanded="false"
-                      aria-controls="collapseWidthExample">SELL</button>
-                    <button type="button" (click)="show_price(myForm)" [disabled]="myForm.get('stock')?.invalid"
-                      id="btnsubmit1" class="btn btn-primary btn-lg mt-3 ml-3 mx-3 --checkprice" data-bs-toggle="collapse"
-                      data-bs-target="#collapseWidthExample1" aria-expanded="false"
-                      aria-controls="collapseWidthExample1">CHECK PRICE</button>
-                    <button type="button" (click)="status()"
-                      class="btn btn-dark btn-lg mt-3 mx-3 --status">STATUS</button>
-                      
-                    <p></p>
-                    <div style="min-height: 120px;">
-                      <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                        <ul class="list-group" id="pl">
-
-                        </ul>
-                      </div>
-                    </div>
-                    <p></p>
-                    <div style="min-height: 120px;">
-                      <div class="collapse collapse-horizontal" id="collapseWidthExample1">
-                        <ul class="list-group">
-                          <li class="list-group-item list-group-item-info">Stock price: {{price}}</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row text-white">
-            <div class=" form p-4">
-              <h1 class="display-4 py-2 text-truncate">STATUS
-              </h1>
-              <ul class="list-group" id="stocklist">
-              </ul>
-              <p></p>
-              <div id="overall"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button type="button" (click)="logout()" class="form btn btn-outline-light pull-left">
-        LOGOUT
-      </button> 
+      <!-- Add more stock prices here -->
     </div>
   </div>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="column-content">
+          <div class="row text-white p-4">
+            <h1 class="display-4 py-1 text-truncate">ADD BUYING</h1>
+            <h4 class="display-8 py-1 text-truncate">AND</h4>
+            <h1 class="display-7 py-1 text-truncate">CHECK STATUS</h1>
+          </div>
+          <div class="row form p-4">
+            <div class="px-2">
+              <form
+                class="justify-content-center"
+                [formGroup]="myForm"
+                (ngSubmit)="add_userdetail(myForm)"
+              >
+                <div class="form-group --stockname text-white">
+                  <label>Stock Name</label>
+                  <select
+                    type="text"
+                    class="form-control custom-select col-sm-2"
+                    formControlName="stock"
+                    name="stock"
+                    required
+                  >
+                    <option
+                      *ngFor="let stockname of stocknames"
+                      value="{{ stockname.sname }}"
+                    >
+                      {{ stockname.name }}
+                    </option>
+                  </select>
+                </div>
+                <p></p>
+                <div class="form-group --quantity text-white">
+                  <label for="floatingSelect">Quantity</label>
+                  <input
+                    type="number"
+                    class="form-control col-sm-2"
+                    name="qty"
+                    formControlName="qty"
+                    min="1"
+                  />
+                </div>
+
+                <div class="cl-btn">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-lg mt-3 mx-3"
+                    [disabled]="myForm.invalid"
+                  >
+                    BUY
+                  </button>
+                  <button
+                    type="button"
+                    (click)="sellstock(myForm)"
+                    [disabled]="myForm.invalid"
+                    id="btnsubmit"
+                    class="btn btn-danger btn-lg mt-3 ml-3 mx-3 --sell"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseWidthExample"
+                    aria-expanded="false"
+                    aria-controls="collapseWidthExample"
+                  >
+                    SELL
+                  </button>
+                  <button
+                    type="button"
+                    (click)="show_price(myForm)"
+                    [disabled]="myForm.get('stock')?.invalid"
+                    id="btnsubmit1"
+                    class="btn btn-primary btn-lg mt-3 ml-3 mx-3 --checkprice"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseWidthExample1"
+                    aria-expanded="false"
+                    aria-controls="collapseWidthExample1"
+                  >
+                    OVERVIEW
+                  </button>
+                  <button
+                    type="button"
+                    (click)="status()"
+                    class="btn btn-dark btn-lg mt-3 mx-3 --status"
+                  >
+                    PORTFOLIO
+                  </button>
+
+                  <p></p>
+                  <div style="min-height: 4px">
+                    <div
+                      class="collapse collapse-horizontal"
+                      id="collapseWidthExample"
+                    >
+                      <ul class="list-group" id="pl"></ul>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <ng-template [ngIf]="condition">
+              <div class="row container">
+                <table>
+                  <thead>
+                    <tr class="text-white">
+                      <th>Symbol</th>
+                      <th>Open</th>
+                      <th>High</th>
+                      <th>Low</th>
+                      <th>Price</th>
+                      <th>Prev Close</th>
+                      <th>Change %</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-white">
+                    <td>{{ stockData["01. symbol"] }}</td>
+                    <td>{{ stockData["02. open"] }}</td>
+                    <td>{{ stockData["03. high"] }}</td>
+                    <td>{{ stockData["04. low"] }}</td>
+                    <td>{{ stockData["05. price"] }}</td>
+                    <td>{{ stockData["08. previous close"] }}</td>
+                    <td
+                      [ngClass]="
+                        getChangeClass(stockData['10. change percent'])
+                      "
+                    >
+                      {{ stockData["10. change percent"] }}
+                    </td>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-6"><div class="column-content"></div>          <div class="ticker-strip1">
+          <div class="ticker1">
+            <!-- Stock News Cards -->
+            <div class="card">News Card 1</div>
+            <div class="card">News Card 2</div>
+            <div class="card">News Card 3</div>
+            <!-- Add more news cards here -->
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    (click)="logout()"
+    class="form btn btn-outline-light custom-button-padding fixed-bottom mb-3"
+  >
+    LOGOUT
+  </button>
 </section>
