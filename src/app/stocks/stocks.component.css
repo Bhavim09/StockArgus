@@ -1,11 +1,11 @@
 #cover {
     background: #222 url("https://source.unsplash.com/mkoxQ99o-_Y") center center no-repeat;
     background-size: cover;
-    height: 100%;
+    /* height: 100%;
     text-align: center;
     display: flex;
     align-items: center;
-    position: relative;
+    position: relative; */
 }
 
 #cover-caption {
@@ -32,14 +32,16 @@ body {
   }
 
   .ticker-strip {
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
+    left: 0; */
+    width: 100vw;
+    height: 5vh;
     background-color: black;
     color: white;
     overflow: hidden;
+    transition: top 0.3s;
+    display: flex;
   }
 
   .ticker-strip .ticker {
@@ -64,15 +66,25 @@ body {
     
   }
   .container {
+    min-width: 100vw;
     max-width: 100vw;
-    margin: 5px;
+    min-height: 95vh;
+    max-height: 95vh;    
+    display: inline-flex;
+    margin:0 5px;
     padding:0px;
+    overflow: scroll;
+
+  }
+  .container::-webkit-scrollbar{
+    display: none;
   }
   
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
     background-color: rgb(44, 42, 42); /* Add white background */
   }
   
@@ -112,36 +124,99 @@ body {
   }
   .column-content {
     width: 100%; /* Set the fixed width for the column content */
-    display: flex;
+
     flex-direction: column;
     align-items: flex-start;
   }
   
 
 
-  .ticker-strip1 {
+  .blog-container {
+    position: relative;
+    height: 500px; /* Adjust the height as needed */
     overflow: hidden;
-    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
-  .ticker1 {
-    display: inline-block;
-    animation: marquee 20s linear infinite;
+  .blog-card {
+    position: relative;
+    bottom: 0;
+    width: 80%;
+    padding: 15px;
+    padding-left: 10%;
+    background-color: #ffffff;
+    border-radius: 2  px;
+    margin-bottom: 15px;
+    animation: scroll-up 30s linear infinite;
+    color: #000;
+    transition: transform .2s;
+    height: 10vh;
+    justify-content: start;
+    display: flex;
+    text-align: left ;
+    align-items: center;
+
+  } 
+  .blog-card:hover{
+    transform: scale(0.95);
+    cursor: pointer;
   }
   
-  @keyframes marquee {
+  @keyframes scroll-up {
     0% {
-      transform: translateY(0%);
+      transform: translateY(100%);
     }
     100% {
-      transform: translateY(-100%);
+      transform: translateY(-600%);
     }
   }
   
-  .card {
-    display: inline-block;
-    padding: 10px;
-    margin-right: 10px;
-    background-color: #f8f8f8;
-    border-radius: 5px;
+  .meter-container {
+  width: 300px;
+  height: 30px;
+  background-color: #f1f1f1;
+  overflow: hidden;
+}
+
+.meter {
+  display: flex;
+  animation: ticker 10s linear infinite;
+}
+
+.label {
+  flex: 1;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0%);
   }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+img{
+  width: 50%;
+}
+.imgcontainer{
+  display: flex;
+  justify-content: center;
+}
+
+.read-more-link {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  text-decoration: none;
+  color: #007bff; /* You can use any color you like for the link */
+}
+
+
+
+
+
