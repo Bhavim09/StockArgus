@@ -1,5 +1,5 @@
 <!-- Section: Design Block -->
-<section class="text-center text-lg-start">
+<section id="cover" class="text-center text-lg-start min-vh-100">
     <style>
       .cascading-right {
         margin-right: -50px;
@@ -19,7 +19,7 @@
       <div class="row g-0 align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="card cascading-right" style="
-              background: hsla(0, 0%, 100%, 0.55);
+              background: hsl(0, 0%, 100%);
               backdrop-filter: blur(30px);
               ">
             <div class="card-body p-5 shadow-5 text-center">
@@ -27,8 +27,14 @@
               <form [formGroup]="myForm" (ngSubmit)="tologin(myForm)" class="signup-form">
                 <!-- 2 column grid layout with text inputs for the first and last names -->
               
-              
-              
+              <!-- Name Input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3">Name</label>
+                  <input type="text" id="form3Example3" class="form-control" formControlName="name"/>
+                <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.dirty || myForm.get('name')?.touched)">
+                  <small class="text-danger">Enter a valid name and it should not more than 20 letters</small>
+                </div>
+                </div>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="form3Example3">Email address</label>
@@ -64,7 +70,9 @@
   
         <div class="col-lg-6 mb-5 mb-lg-0">
           <img src="https://source.unsplash.com\uJhgEXPqSPk" class="w-100 rounded-4 shadow-4"
-            alt="" />
+            alt="" style="
+            margin-left: 20px;
+        " />
         </div>
       </div>
     </div>

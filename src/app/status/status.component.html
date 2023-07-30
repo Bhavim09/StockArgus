@@ -1,26 +1,51 @@
+  <nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">TradeTutor</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a
+          class="nav-link active text-white"
+          aria-current="page"
+          (click)="stock()" style="cursor: pointer;">
+          Home</a
+        >
+        <a class="nav-link active text-white" style="cursor: pointer;">Portfolio</a>
+        <a class="nav-link active text-white" style="cursor: pointer;">History</a>
+        <a class="nav-link active text-white" (click)="funds()" style="cursor: pointer;">Funds</a>
+      </div>
+      <div class="ml-auto d-flex align-items-center">
+        <button type="button" class="btn btn-outline-light">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
 <section id="cover" class="min-vh-100">
-    <div class="ticker-strip">
-        <div class="ticker">
-          <span>AAPL: 14800.50</span>
-          <span>GOOGL: 2745.80</span>
-          <span>MSFT: 2934.20</span>
-          <span>SBIN: 590.20</span>
-          <span>JnJ: 3490.20</span>
-          <span>NVD: 5290.20</span>
-          <span>VISA: 5290.20</span>
-          <span>MCARD: 720.20</span>
-          <span>TESLA:2780.20</span>
-
-          <!-- Add more stock prices here -->
-        </div>
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget_tape"></div>
+      <div class="tradingview-widget-copyright"></div>
     </div>
-<div id="cover-caption" class="content">
+    <br>
+    <!-- TradingView Tape End -->
+  <div class="container text-center">
     <div id="heading" class="mt-5 d-flex justify-content-center">
-        <h1>Portofolio</h1>
+      <h1>Portofolio</h1>
     </div>
-      
+
     <!-- <ul class="list-group" id="stocklist">
     </ul> -->
+    <br />
 
     <table class="table table-dark table-striped">
       <thead>
@@ -33,31 +58,164 @@
       </thead>
       <tbody>
         <tr *ngFor="let stock of stockDetails">
-          <td>{{ stock["name"] }}</td>
-          <td>{{ stock["qty"] }}</td>
-          <td><span [ngClass]="stock['diff']>0?'badge bg-success':'badge bg-danger'">{{stock["diff"]}}</span></td>
+          <th scope="row">{{ stock.stockName }}</th>
+          <td>{{ stock.stockQuantity }}</td>
           <td>
-            <button class="btn btn-sm btn-success mx-2">Buy</button>
-            <button class="btn btn-sm btn-danger">Sell</button>
+            <span
+              class="badge"
+              [ngClass]="stock.pal > 0 ? 'badge-success' : 'badge-danger'"
+              >{{ stock.pal }}</span
+            >
           </td>
-          
+          <td>
+            <button
+              type="button"
+              class="btn btn-sm btn-success mx-2"
+              (click)="stockNameAssign(stock.stockName)"
+              data-toggle="modal"
+              data-target="#BuyModalCenter"
+            >
+              Buy
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-danger"
+              (click)="stockNameAssign(stock.stockName)"
+              data-toggle="modal"
+              data-target="#SellModalCenter"
+            >
+              Sell
+            </button>
+          </td>
         </tr>
       </tbody>
-      </table>  
-        
-        <div id="overall"></div>
-</div>
-
+    </table>
+   c
+  </div>
 </section>
 <footer class="footer">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-6">
-        <p class="pl-text">Profit & Loss</p>
+        <p class="pl-text"><small>Current Value</small></p>
       </div>
       <div class="col-md-6 d-flex justify-content-end">
-        <p [ngClass]="pandLoss>0?'pl-valuegreen':'pl-valuered'">₹{{pandLoss}}</p>
+        <p class="text-white">${{currentValue }}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="pl-text"><small>Total Investment</small></p>
+      </div>
+      <div class="col-md-6 d-flex justify-content-end">
+        <p class="text-white">${{ totalInvestment }}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="pl-text">Day P&L</p>
+      </div>
+      <div class="col-md-6 d-flex justify-content-end">
+        <p [ngClass]="pandLoss > 0 ? 'pl-valuegreen' : 'pl-valuered'">
+          ${{ pandLoss }}
+        </p>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Buy Modal -->
+<div
+  class="modal fade"
+  id="BuyModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">New buy order</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="modalFormBuy" (ngSubmit)="onBuy()">
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label"></label>
+            <input
+              type="number"
+              class="form-control"
+              id="formGroupExampleInput"
+              formControlName="quant"
+              placeholder="Enter Quantity"
+            />
+          </div>
+          <!-- <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Product
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Delivery</a>
+            <a class="dropdown-item" href="#">Intraday</a>
+          </div>
+        </div> -->
+          <!-- <button type="submit" class="btn btn-success">Buy</button> -->
+          <!-- </form> -->
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="modalFormBuy.invalid" (ngSubmit)="onBuy()">Buy</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sell Modal -->
+<div
+  class="modal fade"
+  id="SellModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">New Sell order</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="modalFormSell" (ngSubmit)="onSell()">
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label"></label>
+          <input
+            type="number"
+            class="form-control"
+            id="formGroupExampleInput"
+            placeholder="Enter Quantity"
+            formControlName="quant"
+          />
+        </div>
+        <br />
+      
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" [disabled]="modalFormSell.invalid" >Sell</button>
+      </div>
+    </form>
+  </div>
+    </div>
+  </div>
+</div>

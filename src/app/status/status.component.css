@@ -1,11 +1,11 @@
 #cover {
-    background: #222 url("https://source.unsplash.com/mkoxQ99o-_Y") center center no-repeat;
-    background-size: cover;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    /* align-items: center; */
-    position: relative;
+  background: #222 url("https://source.unsplash.com/mkoxQ99o-_Y") center center no-repeat;
+  background-size: cover;
+  /* height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative; */
 }
 
 #cover-caption {
@@ -32,14 +32,16 @@ body {
   }
 
   .ticker-strip {
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
+    left: 0; */
+    width: 100vw;
+    height: 5vh;
     background-color: black;
     color: white;
     overflow: hidden;
+    transition: top 0.3s;
+    display: flex;
   }
 
   .ticker-strip .ticker {
@@ -89,6 +91,8 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 160px;
+
 }
 .pl-text {
   font-size: 20px;
@@ -104,4 +108,12 @@ body {
   font-size: 20px;
   color: green;
   font-weight: bold;
+}
+
+.container::-webkit-scrollbar{
+  display: none;
+} 
+
+.close{
+  color: white;
 }

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   
   elsecheck = 0;
   myForm!: FormGroup;
-
+  f
 // *************** CONSTRUCTOR ************************************************
 
   constructor(private router: Router, private backservice: BackService, private authg: AuthGuard) { }
@@ -45,8 +45,10 @@ export class LoginComponent implements OnInit {
         ls.set('#qwAs?.,s', Form.value.email, { encrypt: true, secret: 88 });
         this.backservice.communicatemessage(Form.value.email);
         ls.set('qsc@1!%^36', 'true', { encrypt: true, secret: 88 });
-        console.log(value["accessToken"]);
-        ls.set('wqewq234!2@',value["accessToken"],{encrypt:true, secret:88});
+        console.log("Bearer "+value["accessToken"]);
+
+        ls.set('wqewq234!2@',"Bearer "+value["accessToken"]);
+        // {encrypt:true, secret:88}
         this.router.navigateByUrl('/stock');
       }
       else {

@@ -22,6 +22,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
+      name:new FormControl('',[Validators.required,Validators.maxLength(20)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$')]),
       Repassword: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$')])
@@ -33,7 +34,7 @@ export class SignupComponent implements OnInit {
   tologin(Form: FormGroup) {
     const get = new Promise<any>((resolve, _reject) => {
       console.log("Checked Promise...")
-      this.backservice.signup(Form.value.email, Form.value.password).subscribe(
+      this.backservice.signup(Form.value.name,Form.value.email, Form.value.password).subscribe(
         {
           next: res => resolve(res)
         }
@@ -41,6 +42,7 @@ export class SignupComponent implements OnInit {
     })
     get.then((value) => {
       if (value["message"] == "user added") {
+        console.log("Before Interceptor is applied");
         this.router.navigateByUrl('/login');
       }
       else
